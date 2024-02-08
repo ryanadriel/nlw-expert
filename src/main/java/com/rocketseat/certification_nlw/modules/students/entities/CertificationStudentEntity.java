@@ -42,7 +42,7 @@ public class CertificationStudentEntity {
     private StudentEntity studentEntity;
 
     @OneToMany
-    @JoinColumn(name = "asnwer_certification_id")
+    @JoinColumn(name = "asnwer_certification_id", insertable = false, updatable = false)
     List<AnswerCertificationsEntity> answerCertificationsEntities;
 
     @CreationTimestamp
