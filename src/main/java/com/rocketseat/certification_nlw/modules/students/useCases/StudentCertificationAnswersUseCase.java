@@ -84,13 +84,23 @@ public class StudentCertificationAnswersUseCase {
             studentID = student.get().getId();
         }
 
-        CertificationStudentEntity certificationStudentEntity = CertificationStudentEntity.builder()
+        CertificationStudentEntity certificationStudentEntity = CertificationStudentEntity
+        .builder()
         .technology(dto.getTechnology())
         .studentID(studentID)
         .grade(correctAnswers.get())
         .build();
 
         var certificationStudentCreated = certificationStudentRepository.save(certificationStudentEntity);
+
+        answersCertifications.stream().forEach(answerCertifications -> {
+            answerCertifications.setCertificationID(certificationStudentEntity.getId());
+            answerCertifications.setCertificationStudentEntity(certificationStudentEntity);
+        });
+
+        certificationStudentEntity.setAnswersCertificationsEntities(answersCertifications);
+
+        certificationStudentRepository.save(certificationStudentEntity);
 
         return certificationStudentCreated ;
     }
