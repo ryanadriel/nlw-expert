@@ -20,9 +20,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "answerCertification_students")
+@Entity(name = "answers_certification_students")
 @Builder
-public class AnswerCertificationsEntity {
+public class AnswersCertificationsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -45,7 +45,7 @@ public class AnswerCertificationsEntity {
     @Column(name = "question_id")
     private UUID questionID;
 
-    @JoinColumn(name = "answer_id")
+    @Column(name = "answer_id")
     private UUID answerID;
 
     @Column(name = "is_correct")

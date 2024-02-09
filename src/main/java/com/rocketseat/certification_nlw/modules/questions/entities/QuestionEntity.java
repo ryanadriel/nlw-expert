@@ -33,7 +33,7 @@ public class QuestionEntity {
     private String description;
 
     @OneToMany
-    @JoinColumn(name = "question_id")
+    @JoinColumn(name = "question_id", insertable = false, updatable = false)
     private List<AlternativesEntity> alternatives;
 
     @CreationTimestamp

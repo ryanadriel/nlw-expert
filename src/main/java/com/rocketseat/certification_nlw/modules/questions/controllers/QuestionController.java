@@ -13,19 +13,19 @@ import com.rocketseat.certification_nlw.modules.questions.dto.AlternativeResultD
 import com.rocketseat.certification_nlw.modules.questions.dto.QuestionResultDTO;
 import com.rocketseat.certification_nlw.modules.questions.entities.AlternativesEntity;
 import com.rocketseat.certification_nlw.modules.questions.entities.QuestionEntity;
-import com.rocketseat.certification_nlw.modules.questions.repositories.QuestionReponsitory;
+import com.rocketseat.certification_nlw.modules.questions.repositories.QuestionRepository;
 
 @RestController
 @RequestMapping("/questions")
 public class QuestionController {
 
     @Autowired
-    private QuestionReponsitory questionReponsitory;
+    private QuestionRepository questionRepository;
     
     @GetMapping("/technology/{technology}")
     public List<QuestionResultDTO> findByTechnology(@PathVariable String technology) {
         System.out.println("TECH === " + technology);
-        var result = this.questionReponsitory.findByTechnology(technology);
+        var result = this.questionRepository.findByTechnology(technology);
 
         var toMap = result.stream().map(question -> mapQuestionToDTO(question)).collect(Collectors.toList());
         return toMap;
